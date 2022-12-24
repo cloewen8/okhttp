@@ -1,10 +1,6 @@
 Change Log
 ==========
 
-## Version 4.x
-
-See [4.x Change log](https://square.github.io/okhttp/changelogs/changelog_4x/) for the stable version changelogs.
-
 ## Version 5.0.0-alpha.11
 
 _2022-12-24_
