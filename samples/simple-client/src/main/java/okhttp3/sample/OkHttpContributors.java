@@ -1,8 +1,8 @@
 package okhttp3.sample;
 
-import com.squareup.moshi.JsonAdapter;
-import com.squareup.moshi.Moshi;
-import com.squareup.moshi.Types;
+import com.agragps.moshi.JsonAdapter;
+import com.agragps.moshi.Moshi;
+import com.agragps.moshi.Types;
 import java.util.Collections;
 import java.util.List;
 import okhttp3.OkHttpClient;

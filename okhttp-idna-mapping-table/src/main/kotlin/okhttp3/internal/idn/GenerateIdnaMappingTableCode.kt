@@ -17,10 +17,10 @@
 
 package okhttp3.internal.idn
 
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.PropertySpec
+import com.agragps.kotlinpoet.ClassName
+import com.agragps.kotlinpoet.FileSpec
+import com.agragps.kotlinpoet.KModifier
+import com.agragps.kotlinpoet.PropertySpec
 import java.io.File
 import okio.FileSystem
 import okio.Path.Companion.toPath

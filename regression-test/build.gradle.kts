@@ -38,11 +38,11 @@ dependencies {
 
   implementation(libs.kotlin.reflect)
   implementation(libs.playservices.safetynet)
-  implementation("com.squareup.okhttp3:okhttp:${okhttpLegacyVersion}")
-  implementation("com.squareup.okhttp3:okhttp-tls:${okhttpLegacyVersion}") {
+  implementation("com.agragps.okhttp3:okhttp:${okhttpLegacyVersion}")
+  implementation("com.agragps.okhttp3:okhttp-tls:${okhttpLegacyVersion}") {
     exclude("org.bouncycastle")
   }
-  androidTestImplementation("com.squareup.okhttp3:mockwebserver:${okhttpLegacyVersion}")
+  androidTestImplementation("com.agragps.okhttp3:mockwebserver:${okhttpLegacyVersion}")
   androidTestImplementation(libs.bouncycastle.bcprov)
   androidTestImplementation(libs.bouncycastle.bctls)
   androidTestImplementation(libs.androidx.junit)

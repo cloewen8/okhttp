@@ -15,7 +15,7 @@
  */
 package okhttp3.internal
 
-import com.squareup.okhttpicu.SYSTEM_NORMALIZER
+import com.agragps.okhttpicu.SYSTEM_NORMALIZER
 
 internal actual fun normalizeNfc(string: String): String =
   SYSTEM_NORMALIZER.normalizeNfc(string)

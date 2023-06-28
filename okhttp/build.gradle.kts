@@ -169,7 +169,7 @@ project.applyOsgi(
     "org.graalvm.nativeimage.hosted;resolution:=optional," +
     "sun.security.ssl;resolution:=optional,*",
   "Automatic-Module-Name: okhttp3",
-  "Bundle-SymbolicName: com.squareup.okhttp3"
+  "Bundle-SymbolicName: com.agragps.okhttp3"
 )
 
 normalization {

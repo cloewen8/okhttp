@@ -1,6 +1,6 @@
 package okhttp3.survey.ssllabs
 
-import com.squareup.moshi.JsonClass
+import com.agragps.moshi.JsonClass
 
 
 @JsonClass(generateAdapter = true)
