@@ -86,6 +86,6 @@ squareup-moshi-compiler = { module = "com.agragps.moshi:moshi-kotlin-codegen", v
 squareup-moshi-kotlin = { module = "com.agragps.moshi:moshi-kotlin", version.ref = "com-squareup-moshi" }
 squareup-okhttp-icu = "com.agragps.okhttpicu:okhttp-icu:0.2.0"
 squareup-kotlinPoet = "com.squareup:kotlinpoet:1.14.2"
-squareup-okio = { module = "com.agragps.okio:okio", version.ref = "com-squareup-okio" }
-squareup-okio-fakefilesystem = { module = "com.agragps.okio:okio-fakefilesystem", version.ref = "com-squareup-okio" }
+squareup-okio = { module = "com.squareup.okio:okio", version.ref = "com-squareup-okio" }
+squareup-okio-fakefilesystem = { module = "com.squareup.okio:okio-fakefilesystem", version.ref = "com-squareup-okio" }
 squareup-okio-nodefilesystem = { module = "com.agragps.okio:okio-nodefilesystem", version.ref = "com-squareup-okio" }
