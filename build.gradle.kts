@@ -39,7 +39,7 @@ buildscript {
 apply(plugin = "org.jetbrains.dokka")
 
 allprojects {
-  group = "com.squareup.okhttp3"
+  group = "com.agragps.okhttp3"
   version = "5.0.0-alpha.11"
 
   repositories {

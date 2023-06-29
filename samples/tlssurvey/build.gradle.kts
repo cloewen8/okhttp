@@ -9,8 +9,8 @@ application {
 }
 
 dependencies {
-  implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.10")
-  implementation("com.squareup.okhttp3:okhttp-coroutines:5.0.0-alpha.11")
+  implementation("com.agragps.okhttp3:okhttp:5.0.0-alpha.10")
+  implementation("com.agragps.okhttp3:okhttp-coroutines:5.0.0-alpha.11")
   implementation(libs.conscrypt.openjdk)
 
   implementation("com.squareup.retrofit2:retrofit:2.9.0")

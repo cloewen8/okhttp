@@ -9,9 +9,9 @@ plugins {
 }
 
 project.applyOsgi(
-  "Fragment-Host: com.squareup.okhttp3; bundle-version=\"\${range;[==,+);\${version_cleanup;${projects.okhttp.version}}}\"",
+  "Fragment-Host: com.agragps.okhttp3; bundle-version=\"\${range;[==,+);\${version_cleanup;${projects.okhttp.version}}}\"",
   "Automatic-Module-Name: okhttp3.urlconnection",
-  "Bundle-SymbolicName: com.squareup.okhttp3.urlconnection",
+  "Bundle-SymbolicName: com.agragps.okhttp3.urlconnection",
   "-removeheaders: Private-Package"
 )
 
