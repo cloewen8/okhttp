@@ -48,7 +48,7 @@ import okio.BufferedSource
 import okio.Source
 
 @JvmField
-internal val EMPTY_HEADERS: Headers = commonEmptyHeaders
+val EMPTY_HEADERS: Headers = commonEmptyHeaders
 @JvmField
 internal val EMPTY_REQUEST: RequestBody = commonEmptyRequestBody
 @JvmField
@@ -216,7 +216,7 @@ internal inline fun threadName(name: String, block: () -> Unit) {
 }
 
 /** Returns the Content-Length as reported by the response headers. */
-internal fun Response.headersContentLength(): Long {
+fun Response.headersContentLength(): Long {
   return headers["Content-Length"]?.toLongOrDefault(-1L) ?: -1L
 }
 

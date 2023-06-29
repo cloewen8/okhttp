@@ -366,7 +366,7 @@ internal inline fun <T> Iterable<T>.filterList(predicate: T.() -> Boolean): List
 
 internal const val userAgent: String = "okhttp/${CONST_VERSION}"
 
-internal fun checkOffsetAndCount(arrayLength: Long, offset: Long, count: Long) {
+fun checkOffsetAndCount(arrayLength: Long, offset: Long, count: Long) {
   if (offset or count < 0L || offset > arrayLength || arrayLength - offset < count) {
     throw ArrayIndexOutOfBoundsException("length=$arrayLength, offset=$offset, count=$offset")
   }
