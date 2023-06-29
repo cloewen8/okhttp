@@ -9,16 +9,16 @@ application {
 }
 
 dependencies {
-  implementation("com.agragps.okhttp3:okhttp:5.0.0-alpha.10")
-  implementation("com.agragps.okhttp3:okhttp-coroutines:5.0.0-alpha.11")
+  implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.10")
+  implementation("com.squareup.okhttp3:okhttp-coroutines:5.0.0-alpha.11")
   implementation(libs.conscrypt.openjdk)
 
-  implementation("com.agragps.retrofit2:retrofit:2.9.0")
-  implementation("com.agragps.retrofit2:converter-moshi:2.9.0")
+  implementation("com.squareup.retrofit2:retrofit:2.9.0")
+  implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
   implementation(libs.squareup.moshi)
   implementation(libs.squareup.moshi.kotlin)
 
-  ksp("com.agragps.moshi:moshi-kotlin-codegen:1.15.0")
+  ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.0")
 }
 
 tasks.compileJava {

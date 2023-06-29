@@ -15,10 +15,10 @@
  */
 package okhttp3.slack;
 
-import com.agragps.moshi.FromJson;
-import com.agragps.moshi.JsonAdapter;
-import com.agragps.moshi.Moshi;
-import com.agragps.moshi.ToJson;
+import com.squareup.moshi.FromJson;
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
+import com.squareup.moshi.ToJson;
 import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.HttpUrl;

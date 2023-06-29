@@ -15,8 +15,8 @@
  */
 package okhttp3.internal.http2.hpackjson;
 
-import com.agragps.moshi.JsonAdapter;
-import com.agragps.moshi.Moshi;
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;

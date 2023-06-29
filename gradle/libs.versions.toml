@@ -81,11 +81,11 @@ robolectric-android = "org.robolectric:android-all:13-robolectric-9030017"
 robolectric = "org.robolectric:robolectric:4.10.3"
 signature-android-apilevel21 = "net.sf.androidscents.signature:android-api-level-21:5.0.1_r2"
 signature-android-apilevel24 = "net.sf.androidscents.signature:android-api-level-24:7.0_r2"
-squareup-moshi = { module = "com.agragps.moshi:moshi", version.ref = "com-squareup-moshi" }
-squareup-moshi-compiler = { module = "com.agragps.moshi:moshi-kotlin-codegen", version.ref = "com-squareup-moshi" }
-squareup-moshi-kotlin = { module = "com.agragps.moshi:moshi-kotlin", version.ref = "com-squareup-moshi" }
-squareup-okhttp-icu = "com.agragps.okhttpicu:okhttp-icu:0.2.0"
+squareup-moshi = { module = "com.squareup.moshi:moshi", version.ref = "com-squareup-moshi" }
+squareup-moshi-compiler = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "com-squareup-moshi" }
+squareup-moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "com-squareup-moshi" }
+squareup-okhttp-icu = "com.squareup.okhttpicu:okhttp-icu:0.2.0"
 squareup-kotlinPoet = "com.squareup:kotlinpoet:1.14.2"
 squareup-okio = { module = "com.squareup.okio:okio", version.ref = "com-squareup-okio" }
 squareup-okio-fakefilesystem = { module = "com.squareup.okio:okio-fakefilesystem", version.ref = "com-squareup-okio" }
-squareup-okio-nodefilesystem = { module = "com.agragps.okio:okio-nodefilesystem", version.ref = "com-squareup-okio" }
+squareup-okio-nodefilesystem = { module = "com.squareup.okio:okio-nodefilesystem", version.ref = "com-squareup-okio" }

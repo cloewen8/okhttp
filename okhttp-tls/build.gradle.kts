@@ -12,7 +12,7 @@ plugins {
 project.applyOsgi(
   "Export-Package: okhttp3.tls",
   "Automatic-Module-Name: okhttp3.tls",
-  "Bundle-SymbolicName: com.agragps.okhttp3.tls"
+  "Bundle-SymbolicName: com.squareup.okhttp3.tls"
 )
 
 dependencies {

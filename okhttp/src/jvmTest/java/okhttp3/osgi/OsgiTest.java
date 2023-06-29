@@ -39,13 +39,13 @@ import org.junit.jupiter.api.Test;
 public final class OsgiTest {
   /** Each is the Bundle-SymbolicName of an OkHttp module's OSGi configuration. */
   private static final List<String> REQUIRED_BUNDLES = Arrays.asList(
-      "com.agragps.okhttp3",
-      "com.agragps.okhttp3.brotli",
-      "com.agragps.okhttp3.dnsoverhttps",
-      "com.agragps.okhttp3.logging",
-      "com.agragps.okhttp3.sse",
-      "com.agragps.okhttp3.tls",
-      "com.agragps.okhttp3.urlconnection"
+      "com.squareup.okhttp3",
+      "com.squareup.okhttp3.brotli",
+      "com.squareup.okhttp3.dnsoverhttps",
+      "com.squareup.okhttp3.logging",
+      "com.squareup.okhttp3.sse",
+      "com.squareup.okhttp3.tls",
+      "com.squareup.okhttp3.urlconnection"
   );
 
   /** Equinox must also be on the testing classpath. */

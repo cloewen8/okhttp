@@ -11,7 +11,7 @@ plugins {
 project.applyOsgi(
   "Export-Package: okhttp3.brotli",
   "Automatic-Module-Name: okhttp3.brotli",
-  "Bundle-SymbolicName: com.agragps.okhttp3.brotli"
+  "Bundle-SymbolicName: com.squareup.okhttp3.brotli"
 )
 
 dependencies {

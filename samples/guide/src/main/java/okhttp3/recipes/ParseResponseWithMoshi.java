@@ -15,8 +15,8 @@
  */
 package okhttp3.recipes;
 
-import com.agragps.moshi.JsonAdapter;
-import com.agragps.moshi.Moshi;
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
 import java.io.IOException;
 import java.util.Map;
 import okhttp3.OkHttpClient;

@@ -15,7 +15,7 @@
  */
 package okhttp3.survey.ssllabs
 
-import com.agragps.moshi.Moshi
+import com.squareup.moshi.Moshi
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.survey.ssllabs.SslLabsService
