@@ -265,6 +265,7 @@ class RealConnection(
       socket.soTimeout = chain.readTimeoutMillis()
       source.timeout().timeout(chain.readTimeoutMillis.toLong(), MILLISECONDS)
       sink.timeout().timeout(chain.writeTimeoutMillis.toLong(), MILLISECONDS)
+      client.codecFactory?.provideCodec(client, this, source, sink) ?:
       Http1ExchangeCodec(client, this, source, sink)
     }
   }

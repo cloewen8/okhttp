@@ -46,6 +46,7 @@ import okhttp3.internal.ws.RealWebSocket
 import okio.Sink
 import okio.Source
 import kotlin.time.Duration as KotlinDuration
+import okhttp3.agragps.CodecFactory
 import org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
 
 /**
@@ -197,6 +198,8 @@ open class OkHttpClient internal constructor(
 
   @get:JvmName("connectionSpecs") val connectionSpecs: List<ConnectionSpec> =
     builder.connectionSpecs
+
+  @get:JvmName("codecFactory") val codecFactory: CodecFactory? = null
 
   @get:JvmName("protocols") val protocols: List<Protocol> = builder.protocols
 
@@ -528,6 +531,7 @@ open class OkHttpClient internal constructor(
     internal var sslSocketFactoryOrNull: SSLSocketFactory? = null
     internal var x509TrustManagerOrNull: X509TrustManager? = null
     internal var connectionSpecs: List<ConnectionSpec> = DEFAULT_CONNECTION_SPECS
+    internal var codecFactory: CodecFactory? = null
     internal var protocols: List<Protocol> = DEFAULT_PROTOCOLS
     internal var hostnameVerifier: HostnameVerifier = OkHostnameVerifier
     internal var certificatePinner: CertificatePinner = CertificatePinner.DEFAULT
@@ -562,6 +566,7 @@ open class OkHttpClient internal constructor(
       this.sslSocketFactoryOrNull = okHttpClient.sslSocketFactoryOrNull
       this.x509TrustManagerOrNull = okHttpClient.x509TrustManager
       this.connectionSpecs = okHttpClient.connectionSpecs
+      this.codecFactory = okHttpClient.codecFactory
       this.protocols = okHttpClient.protocols
       this.hostnameVerifier = okHttpClient.hostnameVerifier
       this.certificatePinner = okHttpClient.certificatePinner
@@ -885,6 +890,10 @@ open class OkHttpClient internal constructor(
       }
 
       this.connectionSpecs = connectionSpecs.toImmutableList()
+    }
+
+    fun codecFactory(codecFactory: CodecFactory) = apply {
+      this.codecFactory = codecFactory
     }
 
     /**
