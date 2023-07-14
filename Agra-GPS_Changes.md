@@ -8,3 +8,5 @@ for public use, although can be cherry-picked if desired.
 - Added a codecFactory to the OkHttpClient.
 - Used the codecFactory to create codecs in the RealConnection.
 - Some internal objects used by Http1ExchangeCodec have been made public.
+- Made Headers.Builder.addLenient public.
+- Added RealConnectionTest and extended newConnection to include a source and sink field.

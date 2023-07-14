@@ -51,8 +51,7 @@ import okhttp3.internal.http2.StreamResetException
 import okhttp3.internal.isHealthy
 import okhttp3.internal.tls.OkHostnameVerifier
 import okhttp3.internal.ws.RealWebSocket
-import okio.BufferedSink
-import okio.BufferedSource
+import okio.*
 
 /**
  * A connection to a remote web server capable of carrying 1 or more concurrent streams.
@@ -426,8 +425,8 @@ class RealConnection(
         socket = socket,
         handshake = null,
         protocol = null,
-        source = null,
-        sink = null,
+        source = "".byteInputStream().source().buffer(),
+        sink = Pipe(1L).sink.buffer(),
         pingIntervalMillis = 0,
         ConnectionListener.NONE
       )

@@ -139,7 +139,7 @@ actual class Headers internal actual constructor(
      * Add a header line without any validation. Only appropriate for headers from the remote peer
      * or cache.
      */
-    internal fun addLenient(line: String) = apply {
+    fun addLenient(line: String) = apply {
       val index = line.indexOf(':', 1)
       when {
         index != -1 -> {
@@ -207,7 +207,7 @@ actual class Headers internal actual constructor(
      * Add a field with the specified value without any validation. Only appropriate for headers
      * from the remote peer or cache.
      */
-    internal fun addLenient(name: String, value: String) = commonAddLenient(name, value)
+    fun addLenient(name: String, value: String) = commonAddLenient(name, value)
 
     actual fun removeAll(name: String) = commonRemoveAll(name)
 

@@ -199,7 +199,8 @@ open class OkHttpClient internal constructor(
   @get:JvmName("connectionSpecs") val connectionSpecs: List<ConnectionSpec> =
     builder.connectionSpecs
 
-  @get:JvmName("codecFactory") val codecFactory: CodecFactory? = null
+  @get:JvmName("codecFactory") val codecFactory: CodecFactory? =
+    builder.codecFactory
 
   @get:JvmName("protocols") val protocols: List<Protocol> = builder.protocols
 
