@@ -57,9 +57,11 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.ResponseBody.Companion.asResponseBody
 import okhttp3.ResponseBody.Companion.toResponseBody
+import okhttp3.internal.authenticator.JavaNetAuthenticator
 import okhttp3.internal.http2.Settings
 import okhttp3.internal.proxy.NullProxySelector
 import okhttp3.internal.tls.OkHostnameVerifier
+import okhttp3.java.net.cookiejar.JavaNetCookieJar
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.LoggingEventListener
 import okhttp3.mockwebserver.MockResponse
@@ -302,6 +304,7 @@ class KotlinSourceModernTest {
     builder = builder.path("")
     builder = builder.secure()
     builder = builder.httpOnly()
+    builder = builder.sameSite("None")
     val cookie: Cookie = builder.build()
   }
 

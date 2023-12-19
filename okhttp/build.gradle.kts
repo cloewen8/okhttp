@@ -109,6 +109,7 @@ kotlin {
     getByName("jvmTest") {
       dependencies {
         dependsOn(commonTest)
+        implementation(projects.okhttpJavaNetCookiejar)
         implementation(projects.okhttpTls)
         implementation(projects.okhttpUrlconnection)
         implementation(projects.mockwebserver3)
@@ -135,21 +136,21 @@ kotlin {
         implementation(libs.aqute.resolve)
         compileOnly(libs.findbugs.jsr305)
       }
+    }
 
-      getByName("jsMain") {
-        dependencies {
-          dependsOn(nonJvmMain)
-          api(libs.squareup.okio)
-          api(libs.kotlin.stdlib)
-        }
+    getByName("jsMain") {
+      dependencies {
+        dependsOn(nonJvmMain)
+        api(libs.squareup.okio)
+        api(libs.kotlin.stdlib)
       }
+    }
 
-      getByName("jsTest") {
-        dependencies {
-          dependsOn(nonJvmTest)
-          implementation(libs.kotlin.test.js)
-          implementation(libs.kotlinx.coroutines.test)
-        }
+    getByName("jsTest") {
+      dependencies {
+        dependsOn(nonJvmTest)
+        implementation(libs.kotlin.test.js)
+        implementation(libs.kotlinx.coroutines.test)
       }
     }
   }
@@ -217,5 +218,5 @@ dependencies {
 }
 
 mavenPublishing {
-  configure(KotlinMultiplatform(javadocJar = JavadocJar.Dokka("dokkaGfm")))
+  configure(KotlinMultiplatform(javadocJar = JavadocJar.Empty()))
 }

@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
 import com.vanniktech.maven.publish.SonatypeHost
 import groovy.util.Node
@@ -5,7 +7,7 @@ import groovy.util.NodeList
 import java.net.URL
 import kotlinx.validation.ApiValidationExtension
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import org.jetbrains.kotlin.gradle.targets.js.testing.KotlinJsTest
 import org.jetbrains.kotlin.gradle.targets.jvm.tasks.KotlinJvmTest
 import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeTest
@@ -40,7 +42,7 @@ apply(plugin = "org.jetbrains.dokka")
 
 allprojects {
   group = "com.agragps.okhttp3"
-  version = "5.0.0-alpha.11"
+  version = "5.0.0-alpha.12"
 
   repositories {
     mavenCentral()
@@ -86,7 +88,7 @@ subprojects {
 
   configure<JavaPluginExtension> {
     toolchain {
-      languageVersion.set(JavaLanguageVersion.of(11))
+      languageVersion.set(JavaLanguageVersion.of(17))
     }
   }
 
@@ -140,7 +142,7 @@ subprojects {
   }
 
   val platform = System.getProperty("okhttp.platform", "jdk9")
-  val testJavaVersion = System.getProperty("test.java.version", "11").toInt()
+  val testJavaVersion = System.getProperty("test.java.version", "17").toInt()
 
   val testRuntimeOnly: Configuration by configurations.getting
   dependencies {
@@ -150,13 +152,13 @@ subprojects {
 
   tasks.withType<Test> {
     useJUnitPlatform()
-    jvmArgs = jvmArgs!! + listOf(
+    jvmArgs(
       "-Dokhttp.platform=$platform",
       "-XX:+HeapDumpOnOutOfMemoryError"
     )
 
     if (platform == "loom") {
-      jvmArgs = jvmArgs!! + listOf(
+      jvmArgs(
         "-Djdk.tracePinnedThread=full",
         "--enable-preview"
       )
@@ -196,7 +198,7 @@ subprojects {
         dependencies.create("org.mortbay.jetty.alpn:alpn-boot:$alpnBootVersion")
       ).singleFile
       tasks.withType<Test> {
-        jvmArgs = jvmArgs!! + listOf("-Xbootclasspath/p:${alpnBootJar}")
+        jvmArgs("-Xbootclasspath/p:${alpnBootJar}")
       }
     }
   } else if (platform == "conscrypt") {
@@ -217,29 +219,22 @@ subprojects {
 
 /** Configure publishing and signing for published Java and JavaPlatform subprojects. */
 subprojects {
-  tasks.withType<DokkaTask>().configureEach {
+  tasks.withType<DokkaTaskPartial>().configureEach {
     dokkaSourceSets.configureEach {
       reportUndocumented.set(false)
       skipDeprecated.set(true)
       jdkVersion.set(8)
       perPackageOption {
-        matchingRegex.set("okhttp3\\.internal.*")
-        suppress.set(true)
-      }
-      perPackageOption {
-        matchingRegex.set("mockwebserver3\\.internal.*")
+        matchingRegex.set(".*\\.internal.*")
         suppress.set(true)
       }
       if (project.file("Module.md").exists()) {
         includes.from(project.file("Module.md"))
       }
       externalDocumentationLink {
-        url.set(URL("https://square.github.io/okio/2.x/okio/"))
-        packageListUrl.set(URL("https://square.github.io/okio/2.x/okio/package-list"))
+        url.set(URL("https://square.github.io/okio/3.x/okio/"))
+        packageListUrl.set(URL("https://square.github.io/okio/3.x/okio/okio/package-list"))
       }
-    }
-    if (name == "dokkaGfm") {
-      outputDirectory.set(file("${rootDir}/docs/4.x"))
     }
   }
 

@@ -5,7 +5,6 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
   kotlin("multiplatform")
-  kotlin("kapt")
   id("org.jetbrains.dokka")
   id("com.vanniktech.maven.publish.base")
   id("com.palantir.graal")
@@ -114,5 +113,5 @@ tasks.getByName("copyJvmJar").dependsOn(tasks.getByName("jvmJar"))
 tasks.getByName("nativeImage").dependsOn(copyJvmJar)
 
 mavenPublishing {
-  configure(KotlinMultiplatform(javadocJar = JavadocJar.Dokka("dokkaGfm")))
+  configure(KotlinMultiplatform(javadocJar = JavadocJar.Empty()))
 }

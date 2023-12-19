@@ -23,18 +23,17 @@ if (graalBuild.toBoolean()) {
 
 //include(":okcurl")
 include(":okhttp")
-include(":okhttp-android")
 include(":okhttp-bom")
 include(":okhttp-brotli")
+include(":okhttp-coroutines")
 include(":okhttp-dnsoverhttps")
 include(":okhttp-hpacktests")
 include(":okhttp-idna-mapping-table")
+include(":okhttp-java-net-cookiejar")
 include(":okhttp-logging-interceptor")
-project(":okhttp-logging-interceptor").name = "logging-interceptor"
 include(":okhttp-sse")
 include(":okhttp-testing-support")
 include(":okhttp-tls")
-include(":okhttp-coroutines")
 include(":okhttp-urlconnection")
 //include(":samples:compare")
 //include(":samples:crawler")
@@ -44,6 +43,33 @@ include(":okhttp-urlconnection")
 //include(":samples:static-server")
 //include(":samples:tlssurvey")
 //include(":samples:unixdomainsockets")
-//include(":android-test")
+
+project(":okhttp-logging-interceptor").name = "logging-interceptor"
+
+if (!isKnownBrokenIntelliJ()) {
+  include(":okhttp-android")
+  //include(":android-test")
+}
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+/**
+ * Avoid a crash in IntelliJ triggered by Android submodules.
+ *
+ * ```
+ * java.lang.AssertionError: Can't find built-in class kotlin.Cloneable
+ *   at org.jetbrains.kotlin.builtins.KotlinBuiltIns.getBuiltInClassByFqName(KotlinBuiltIns.java:217)
+ *   at org.jetbrains.kotlin.builtins.jvm.JavaToKotlinClassMapper.mapJavaToKotlin(JavaToKotlinClassMapper.kt:41)
+ * 	...
+ * ```
+ */
+fun isKnownBrokenIntelliJ(): Boolean {
+  val ideaVersionString = System.getProperty("idea.version") ?: return false
+
+  return try {
+    val (major, minor, _) = ideaVersionString.split(".", limit = 3)
+    KotlinVersion(major.toInt(), minor.toInt()) < KotlinVersion(2023, 2)
+  } catch (e: Exception) {
+    false // Unknown version, presumably compatible.
+  }
+}

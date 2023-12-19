@@ -40,6 +40,7 @@ import mockwebserver3.RecordedRequest;
 import mockwebserver3.junit5.internal.MockWebServerInstance;
 import okhttp3.internal.Internal;
 import okhttp3.internal.platform.Platform;
+import okhttp3.java.net.cookiejar.JavaNetCookieJar;
 import okhttp3.testing.PlatformRule;
 import okhttp3.tls.HandshakeCertificates;
 import okio.Buffer;
@@ -336,6 +337,49 @@ public final class CacheTest {
     assertThat(response2.handshake().peerCertificates()).isEqualTo(serverCerts);
     assertThat(response2.handshake().peerPrincipal()).isEqualTo(peerPrincipal);
     assertThat(response2.handshake().localPrincipal()).isEqualTo(localPrincipal);
+  }
+
+  @Test public void secureResponseCachingWithCorruption() throws IOException {
+    server.useHttps(handshakeCertificates.sslSocketFactory());
+    server.enqueue(new MockResponse.Builder()
+            .addHeader("Last-Modified: " + formatDate(-1, TimeUnit.HOURS))
+            .addHeader("Expires: " + formatDate(1, TimeUnit.HOURS))
+            .body("ABC")
+            .build());
+    server.enqueue(new MockResponse.Builder()
+            .addHeader("Last-Modified: " + formatDate(-5, TimeUnit.MINUTES))
+            .addHeader("Expires: " + formatDate(2, TimeUnit.HOURS))
+            .body("DEF")
+            .build());
+
+    client = client.newBuilder()
+            .sslSocketFactory(
+                    handshakeCertificates.sslSocketFactory(), handshakeCertificates.trustManager())
+            .hostnameVerifier(NULL_HOSTNAME_VERIFIER)
+            .build();
+
+    Request request = new Request.Builder().url(server.url("/")).build();
+    Response response1 = client.newCall(request).execute();
+    assertThat(response1.body().string()).isEqualTo("ABC");
+
+    Path cacheEntry = fileSystem.allPaths().stream()
+            .filter((e) -> e.name().endsWith(".0"))
+            .findFirst()
+            .orElseThrow(NoSuchElementException::new);
+    corruptCertificate(cacheEntry);
+
+    Response response2 = client.newCall(request).execute(); // Not Cached!
+    assertThat(response2.body().string()).isEqualTo("DEF");
+
+    assertThat(cache.requestCount()).isEqualTo(2);
+    assertThat(cache.networkCount()).isEqualTo(2);
+    assertThat(cache.hitCount()).isEqualTo(0);
+  }
+
+  private void corruptCertificate(Path cacheEntry) throws IOException {
+    String content = Okio.buffer(fileSystem.source(cacheEntry)).readUtf8();
+    content = content.replace("MII", "!!!");
+    Okio.buffer(fileSystem.sink(cacheEntry)).writeUtf8(content).close();
   }
 
   @Test public void responseCachingAndRedirects() throws Exception {
