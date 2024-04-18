@@ -42,7 +42,7 @@ apply(plugin = "org.jetbrains.dokka")
 
 allprojects {
   group = "com.agragps.okhttp3"
-  version = "5.0.0-alpha.13"
+  version = "5.0.0-alpha.14"
 
   repositories {
     mavenCentral()
